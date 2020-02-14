@@ -1,24 +1,30 @@
 
-14/02/2020
+15/02/2020
 policy: disable InPrivate mode
 comment: Users can not use ingognito
 admin: sebastian
 GPO: GPOPFAfdelingen
 
-14/02/2020
+15/02/2020
 policy: deny acces control panel
 comment: only admins should be able to edit settings
 admin: dieter
 GPO: GPOPFAfdelingen
 
-14/02/2020
+15/02/2020
 policy: no history
 comment: users should not remove his hisrory
 admin: dimitry
 GPO: gebruikers
 
-14/02/2020
+15/02/2020
 policy: no downloads
 comment: users cannot download from the internet
 admin: gabriel
+GPO: gebruikers
+
+15/02/2020
+policy: cd burning disabled
+comment: users cannot burn cd's
+admin: wim
 GPO: gebruikers

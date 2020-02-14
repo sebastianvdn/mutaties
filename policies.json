@@ -1,5 +1,4 @@
-<<<<<<< HEAD
- [
+[
     {
         "policy": "disable InPrivate mode",
         "comment": "Users can not use ingognito",
@@ -27,51 +26,12 @@
         "admin": "gabriel",
         "gpo": "gebruikers",
         "date": "14/02/2020"
-}
-
-=======
-[
-    {
-        "policy": "disable InPrivate mode",
-        "comment": "Users can not use ingognito",
-        "admin": "sebastian",
-        "gpo": "GPOPFAfdelingen",
-        "date": "13/02/2020"
     },
     {
-        "policy": "deny acces control panel",
-        "comment": "only admins should be able to edit settings",
-        "admin": "dieter",
-        "gpo": "GPOPFAfdelingen",
-        "date": "13/02/2020"
-    },
-    {
-        "policy": "no history",
-        "comment": "users should not remove his hisrory",
-        "admin": "dimitry",
+        "policy": "cd burning disabled",
+        "comment": "users cannot burn cd's",
+        "admin": "wim",
         "gpo": "gebruikers",
-        "date": "14/02/2020"
-    },
-    {
-        "policy": "remove and make mapping disabled",
-        "comment": "for safety and so that useers cant make unnecasary changes",
-        "admin": "sebastian",
-        "gpo": "gebruikers",
-        "date": "14/02/2020"
-    },
-    {
-        "policy": "acces to disk management disabled",
-        "comment": "so users wont accidently or willingly format a whole hard disk",
-        "admin": "sebastian",
-        "gpo": "gebruikers",
-        "date": "14/02/2020"
-    },
-    {
-        "policy": "firewall",
-        "comment": "firewall should always be enabled",
-        "admin": "sebastian",
-        "gpo": "gebruikers",
-        "date": "14/02/2020"
+        "date": "15/02/2020"
     }
 ]
->>>>>>> e59dd36970c8b00ca9fbc81cc0db663e4d4b2ace

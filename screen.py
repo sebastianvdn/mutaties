@@ -23,7 +23,7 @@ class AddNewPolicy():
         comment_label = Label(window, text='Commment*')
         comment_label.grid(column=2, row=0)
 
-        admin_label = Label(window, text='admin*')
+        admin_label = Label(window, text='Admin*')
         admin_label.grid(column=3, row=0)
         admin_combo = ttk.Combobox(window)
         admin_combo['values']= ('sebastian', 'wim', 'jan', 'fons')
@@ -88,7 +88,7 @@ class AddNewPolicy():
                 with open('policies.txt', 'a') as txt_file:
                     txt_file.write(f"\n{self.formatted_date}")
                     txt_file.write(
-                        f"\npolicy: {item['policy']}\ncomment: {item['comment']}\nadmin: {item['admin']}\nGPO: {item['gpo']}\n"
+                        f"\npolicy: {item['policy']}\ncomment: {item['comment']}\nadmin: {item['admin'].title()}\nGPO: {item['gpo']}\n"
                         )
         def export_xlsx():
             workbook = xlsxwriter.Workbook('policies.xlsx')
