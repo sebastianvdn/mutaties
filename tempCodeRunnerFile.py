@@ -1,5 +1,1 @@
-from datetime import date
-
-today = date.today()
-formatted = today.strftime("%d/%m/%Y")
-print(formatted) 
+        admin_label_txt.grid(column=3, row=1)

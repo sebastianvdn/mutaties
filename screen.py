@@ -1,5 +1,5 @@
 # Import modules
-from tkinter import Tk, Label, Entry, Button
+from tkinter import Tk, Label, Entry, Button, ttk, messagebox
 import json
 from datetime import date
 import csv 
@@ -15,15 +15,21 @@ class AddNewPolicy():
         window.title("Enter a new activated policy")
 
         # Set the dimensions of the window
-        window.geometry('620x200')
+        window.geometry('700x200')
 
         # Create the labels
         policy_label = Label(window, text="Policy*")
         policy_label.grid(column=1, row=0)
         comment_label = Label(window, text='Commment*')
         comment_label.grid(column=2, row=0)
-        admin_label = Label(window, text='Admin*')
+
+        admin_label = Label(window, text='admin*')
         admin_label.grid(column=3, row=0)
+        admin_combo = ttk.Combobox(window)
+        admin_combo['values']= ('sebastian', 'wim', 'jan', 'fons')
+        admin_combo.current(0)
+        admin_combo.grid(column=3, row=1)
+
         gpo_label = Label(window, text="GPO*")
         gpo_label.grid(column=4, row=0)
 
@@ -35,33 +41,45 @@ class AddNewPolicy():
         policy_label_txt.grid(column=1, row=1)
         comment_label_txt = Entry(window, width=20)
         comment_label_txt.grid(column=2, row=1)
-        admin_label_txt = Entry(window, width= 10)
-        admin_label_txt.grid(column=3, row=1)
         gpo_label_txt = Entry(window, width=10)
         gpo_label_txt.grid(column=4, row=1)
 
         # Function that will be executed when clicked    
         def submit():
-            global new_policy
-            new_policy = {
-                'policy': policy_label_txt.get(),
-                'comment': comment_label_txt.get(),
-                'admin': admin_label_txt.get(),
-                'gpo': gpo_label_txt.get(),
-                "date": self.formatted_date
-            }
+            if not policy_label_txt.get():
+                messagebox.showwarning(
+                    "Missing values", "You must fill in the policy!")
+            if not comment_label_txt.get():
+                messagebox.showwarning(
+                    "Missing values", "You must fill in the comment!")
+            if not admin_combo.get():
+                messagebox.showwarning(
+                    "Missing values", "You must choose an admin!")
+            if not gpo_label_txt.get():
+                messagebox.showwarning(
+                    "Missing values", "You must tell to wich GPO it was aplied!")
 
-            with open('policies.json') as f:
-                policies = json.load(f)
-                temp = policies['applied_policies']
+            else:
+                global new_policy
+                new_policy = {
+                    'policy': policy_label_txt.get(),
+                    'comment': comment_label_txt.get(),
+                    'admin': admin_combo.get(),
+                    'gpo': gpo_label_txt.get(),
+                    "date": self.formatted_date
+                }
 
-            def write_json(data, filename='policies.json'):
-                """The function to add the data to the JSON file."""
-                with open(filename, 'w') as f:
-                    json.dump(data, f, indent=4)            
+                with open('policies.json') as f:
+                    policies = json.load(f)
+                    temp = policies['applied_policies']
 
-            temp.append(new_policy)
-            write_json(policies)
+                def write_json(data, filename='policies.json'):
+                    """The function to add the data to the JSON file."""
+                    with open(filename, 'w') as f:
+                        json.dump(data, f, indent=4)            
+
+                temp.append(new_policy)
+                write_json(policies)
 
         def export():
             with open('policies.json') as f:
@@ -76,12 +94,12 @@ class AddNewPolicy():
                             )
 
 
-        submit_btn = Button(window, text="submit", command=submit)
+        submit_btn = Button(window, text="submit", command=submit, bg="red")
         submit_btn.grid(column=4, row=3)
 
         export_btn = Button(
             window, text="export (txt)",
-            command=export)
+            command=export, bg="green")
         export_btn.grid(column=4, row=4)
 
         window.mainloop()
