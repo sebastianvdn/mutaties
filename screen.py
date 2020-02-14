@@ -2,7 +2,7 @@
 from tkinter import Tk, Label, Entry, Button, ttk, messagebox
 import json
 from datetime import date
-import csv 
+import xlsxwriter
 
 class AddNewPolicy():
     def __init__(self):
@@ -71,37 +71,66 @@ class AddNewPolicy():
 
                 with open('policies.json') as f:
                     policies = json.load(f)
-                    temp = policies['applied_policies']
 
                 def write_json(data, filename='policies.json'):
                     """The function to add the data to the JSON file."""
                     with open(filename, 'w') as f:
                         json.dump(data, f, indent=4)            
 
-                temp.append(new_policy)
+                policies.append(new_policy)
                 write_json(policies)
 
-        def export():
+        def export_txt():
             with open('policies.json') as f:
                 data = json.load(f)
 
-            for key, value in data.items():
-                for item in value:
-                    with open('policies.txt', 'a') as txt_file:
-                        txt_file.write(f"\n{self.formatted_date}")
-                        txt_file.write(
-                            f"\npolicy: {item['policy']}\ncomment: {item['comment']}\nadmin: {item['admin']}\nGPO: {item['gpo']}\n"
-                            )
+            for item in data:
+                with open('policies.txt', 'a') as txt_file:
+                    txt_file.write(f"\n{self.formatted_date}")
+                    txt_file.write(
+                        f"\npolicy: {item['policy']}\ncomment: {item['comment']}\nadmin: {item['admin']}\nGPO: {item['gpo']}\n"
+                        )
+        def export_xlsx():
+            workbook = xlsxwriter.Workbook('policies.xlsx')
+            worksheet = workbook.add_worksheet()
 
+            bold = workbook.add_format({'bold': True})
+
+            headers = [
+                'policy', 'comment', 'admin', 'gpo', 'date'
+            ]
+
+            with open('policies.json') as f:
+                policies = json.load(f)
+
+            first_row = 0
+            for header in headers:
+                col = headers.index(header)
+                worksheet.write(first_row, col, header, bold)
+
+            row = 1
+            for policy in policies:
+                for _key, _value in policy.items():
+                    col = headers.index(_key)
+                    worksheet.write(row, col, _value)
+
+                row += 1
+
+            workbook.close()
 
         submit_btn = Button(window, text="submit", command=submit, bg="red")
         submit_btn.grid(column=4, row=3)
 
-        export_btn = Button(
+        export_btn_txt = Button(
             window, text="export (txt)",
-            command=export, bg="green")
-        export_btn.grid(column=4, row=4)
+            command=export_txt, bg="green")
+        export_btn_txt.grid(column=4, row=4)
 
+        export_btn_xlsx = Button(
+            window, text="export (xlsx)",
+            command=export_xlsx, bg='green'
+        )
+        export_btn_xlsx.grid(column=4, row=5)
         window.mainloop()
 
 
