@@ -41,6 +41,7 @@ class AddNewPolicy():
         gpo_label_txt.grid(column=4, row=1)
 
         # Function that will be executed when clicked    
+        def submit():
             global new_policy
             new_policy = {
                 'policy': policy_label_txt.get(),
