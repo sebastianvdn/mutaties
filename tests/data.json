@@ -1,32 +1,30 @@
-{
-    "applied_policies": [
-        {
-            "policy": "no InPrivateMode",
-            "comment": "The users shouldn't be able to use incognito",
-            "admin": "sebastian",
-            "gpo": "gebruikers",
-            "date": "13/02/2020"
-        },
-        {
-            "policy": "firewall always on",
-            "comment": "for security reasons the users can't disabel firewalls",
-            "admin": "sebastian",
-            "gpo": "gebruikers",
-            "date": "13/02/2020"
-        },
-        {
-            "policy": "user can not map network drive",
-            "comment": "for safety reasons",
-            "admin": "gabriel",
-            "gpo": "gebruikers",
-            "date": "13/02/2020"
-        },
-        {
-            "policy": "view wifi paswword disabled",
-            "comment": "should be private",
-            "admin": "dimitry",
-            "gpo": "gebuiker",
-            "date": "16/04/2022"
-        }
-    ]
-}
+[
+    {
+        "policy": "no InPrivateMode",
+        "comment": "The users shouldn't be able to use incognito",
+        "admin": "sebastian",
+        "gpo": "gebruikers",
+        "date": "13/02/2020"
+    },
+    {
+        "policy": "firewall always on",
+        "comment": "for security reasons the users can't disabel firewalls",
+        "admin": "sebastian",
+        "gpo": "gebruikers",
+        "date": "13/02/2020"
+    },
+    {
+        "policy": "user can not map network drive",
+        "comment": "for safety reasons",
+        "admin": "gabriel",
+        "gpo": "gebruikers",
+        "date": "13/02/2020"
+    },
+    {
+        "policy": "view wifi paswword disabled",
+        "comment": "should be private",
+        "admin": "dimitry",
+        "gpo": "gebuiker",
+        "date": "16/04/2022"
+    }
+]
