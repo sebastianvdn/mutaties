@@ -64,14 +64,23 @@ class AddNewPolicy():
             write_json(policies)
 
         def export():
-            c = 8
-            print(c)
+            with open('policies.json') as f:
+                data = json.load(f)
+
+            for key, value in data.items():
+                for item in value:
+                    with open('policies.txt', 'a') as txt_file:
+                        txt_file.write(f"\n{self.formatted_date}")
+                        txt_file.write(
+                            f"\npolicy: {item['policy']}\ncomment: {item['comment']}\nadmin: {item['admin']}\nGPO: {item['gpo']}\n"
+                            )
+
 
         submit_btn = Button(window, text="submit", command=submit)
         submit_btn.grid(column=4, row=3)
 
         export_btn = Button(
-            window, text="export (csv)",
+            window, text="export (txt)",
             command=export)
         export_btn.grid(column=4, row=4)
 
