@@ -1,0 +1,25 @@
+
+
+13/02/2020
+policy: no InPrivateMode
+comment: The users shouldn't be able to use incognito
+admin: sebastian
+GPO: gebruikers
+
+13/02/2020
+policy: firewall always on
+comment: for security reasons the users can't disabel firewalls
+admin: sebastian
+GPO: gebruikers
+
+13/02/2020
+policy: user can not map network drive
+comment: for safety reasons
+admin: gabriel
+GPO: gebruikers
+
+16/04/2022
+policy: view wifi paswword disabled
+comment: should be private
+admin: dimitry
+GPO: gebuiker
