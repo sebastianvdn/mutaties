@@ -22,23 +22,9 @@
             "date": "14/02/2020"
         },
         {
-            "policy": "remove and make mapping disabled",
-            "comment": "for safety and so that useers cant make unnecasary changes",
-            "admin": "sebastian",
-            "gpo": "gebruikers",
-            "date": "14/02/2020"
-        },
-        {
-            "policy": "acces to disk management disabled",
-            "comment": "so users wont accidently or willingly format a whole hard disk",
-            "admin": "sebastian",
-            "gpo": "gebruikers",
-            "date": "14/02/2020"
-        },
-        {
-            "policy": "firewall",
-            "comment": "firewall should always be enabled",
-            "admin": "sebastian",
+            "policy": "no downloads",
+            "comment": "users cannot download from the internet",
+            "admin": "gabriel",
             "gpo": "gebruikers",
             "date": "14/02/2020"
         }
