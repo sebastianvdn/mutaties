@@ -14,28 +14,22 @@ class AddNewPolicy():
         # Set title of the window
         window.title("Enter a new activated policy")
 
-        # Set the dimensions of the window
-        window.geometry('700x200')
-
         # Create the labels
-        policy_label = Label(window, text="Policy*")
+        policy_label = Label(window, text="Policy")
         policy_label.grid(column=1, row=0)
-        comment_label = Label(window, text='Commment*')
+        comment_label = Label(window, text='Commment')
         comment_label.grid(column=2, row=0)
 
-        admin_label = Label(window, text='Admin*')
+        admin_label = Label(window, text='Admin')
         admin_label.grid(column=3, row=0)
         admin_combo = ttk.Combobox(window)
-        admin_combo['values']= ('sebastian', 'wim', 'jan', 'fons')
+        admin_combo['values']= ('Sebastian', 'Wim', 'Jan', 'Fons')
         admin_combo.current(0)
         admin_combo.grid(column=3, row=1)
 
-        gpo_label = Label(window, text="GPO*")
+        gpo_label = Label(window, text="GPO")
         gpo_label.grid(column=4, row=0)
-
-        required_label = Label(window, text="*All the values are required.")
-        required_label.grid(column=0, row=3)
-
+        
         # Create an entry for user input
         policy_label_txt = Entry(window,width=10)
         policy_label_txt.grid(column=1, row=1)
