@@ -3,6 +3,8 @@ from tkinter import Tk, Label, Entry, Button, ttk, messagebox
 import json
 from datetime import date
 import xlsxwriter
+from PIL import Image, ImageTk
+import os 
 
 class AddNewPolicy():
     def __init__(self):
@@ -19,7 +21,10 @@ class AddNewPolicy():
         policy_label.grid(column=1, row=0)
         comment_label = Label(window, text='Commment')
         comment_label.grid(column=2, row=0)
+        gpo_label = Label(window, text="GPO")
+        gpo_label.grid(column=4, row=0)
 
+        # Create a combo with predifined admins
         admin_label = Label(window, text='Admin')
         admin_label.grid(column=3, row=0)
         admin_combo = ttk.Combobox(window)
@@ -27,9 +32,14 @@ class AddNewPolicy():
         admin_combo.current(0)
         admin_combo.grid(column=3, row=1)
 
-        gpo_label = Label(window, text="GPO")
-        gpo_label.grid(column=4, row=0)
-        
+        # Create an image
+        size = 100, 100
+        image = Image.open('vives.png')
+        image.thumbnail(size, Image.ANTIALIAS)
+        render = ImageTk.PhotoImage(image)
+        imgView = ttk.Label(window, image=render)
+        imgView.grid(row=5, column=0, columnspan=2, sticky='S')
+
         # Create an entry for user input
         policy_label_txt = Entry(window,width=10)
         policy_label_txt.grid(column=1, row=1)
@@ -38,7 +48,7 @@ class AddNewPolicy():
         gpo_label_txt = Entry(window, width=10)
         gpo_label_txt.grid(column=4, row=1)
 
-        # Function that will be executed when clicked    
+        # Function that will be executed when clicked on submit 
         def submit():
             if not policy_label_txt.get():
                 messagebox.showwarning(
@@ -73,7 +83,8 @@ class AddNewPolicy():
 
                 policies.append(new_policy)
                 write_json(policies)
-
+        
+        # Function executed when clicked on export (txt)
         def export_txt():
             with open('policies.json') as f:
                 data = json.load(f)
@@ -84,6 +95,8 @@ class AddNewPolicy():
                     txt_file.write(
                         f"\npolicy: {item['policy']}\ncomment: {item['comment']}\nadmin: {item['admin'].title()}\nGPO: {item['gpo']}\n"
                         )
+
+        # Function executed when clicked on export (xlsx)
         def export_xlsx():
             workbook = xlsxwriter.Workbook('policies.xlsx')
             worksheet = workbook.add_worksheet()
@@ -111,23 +124,25 @@ class AddNewPolicy():
                 row += 1
 
             workbook.close()
+            path = r"C:\Users\sebas\OneDrive - Hogeschool VIVES\Netwerkbeheer\Kwartaal3\Windows server\mutaties\policies.xlsx"
+            os.system(path)
+
 
         submit_btn = Button(window, text="submit", command=submit, bg="red")
-        submit_btn.grid(column=4, row=3)
+        submit_btn.grid(column=4, row=2)
 
         export_btn_txt = Button(
             window, text="export (txt)",
             command=export_txt, bg="green")
-        export_btn_txt.grid(column=4, row=4)
+        export_btn_txt.grid(column=4, row=3)
 
         export_btn_xlsx = Button(
             window, text="export (xlsx)",
             command=export_xlsx, bg='green'
         )
-        export_btn_xlsx.grid(column=4, row=5)
+        export_btn_xlsx.grid(column=4, row=4)
+
         window.mainloop()
 
-
-        
 
 AddNewPolicy()
